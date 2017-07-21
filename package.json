@@ -1,0 +1,40 @@
+{
+  "name": "liri-node-app",
+  "version": "1.0.0",
+  "description": "Language Interpretation and Recognition Interface",
+  "main": "liri.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonathanansley/liri-node-app.git"
+  },
+  "keywords": [
+    "LIRI",
+    "Twitter",
+    "Spotify",
+    "OMDB"
+  ],
+  "author": "Jonathan Ansley",
+  "license": "ISC",
+  "dependencies": {
+    "inquirer": "^1.0.2",
+    "twit": "^2.2.5"
+  }
+  "bugs": {
+    "url": "https://github.com/jonathanansley/liri-node-app/issues"
+  },
+  "homepage": "https://github.com/jonathanansley/liri-node-app#readme"
+}
+
+
+
+   * Spotify
+   https://www.npmjs.com/package/node-spotify-api
+   
+   * Request
+   https://www.npmjs.com/package/request
+     
+     * You'll use Request to grab data from the OMDB API
+     http://www.omdbapi.com
