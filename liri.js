@@ -1,124 +1,97 @@
+//NPM packages
+
 // Load the inquirer pacakge
 var inquirer = require("inquirer");
+
+// Core node package for reading and writing files
+var fs = require("fs");
 
 // Grab the data from keys.js and the keys in a variable.
 var keys = require("./keys.js");
 
 var Twitter = require('twitter');
 
-function myTweets() {
+var spotify = require('spotify');
+
+var getMyTweets = function() {
 	console.log("--------------------------");
-	console.log("--- This is the my-tweets function. ---");
+	console.log("--- This is the getMytweets function. ---");
 	console.log("`node liri.js my-tweets`");
 	console.log("last 20 tweets and when created.");
 	console.log("--------------------------");
 
-var client = new Twitter(keys.twitterKeys);
+	var client = new Twitter(keys.twitterKeys);
 
-var params = {screen_name: 'jakc12341'};
-client.get('statuses/user_timeline', params, function(error, tweets, response) {
-		if(!error) {
-			// console.log(tweets);
-			for (var i = tweets.length - 1; i >= 0; i--) {
-				tweets[i]
-				console.log("--------------------------");
-				console.log(tweets[i].created_at);
-				console.log(' ');
-				console.log(tweets[i].text);
-				console.log("--------------------------\n\n");
+	var params = {screen_name: 'jakc12341'};
+	client.get('statuses/user_timeline', params, function(error, tweets, response) {
+			if(!error) {
+				// console.log(tweets);
+				for (var i = tweets.length - 1; i >= 0; i--) {
+					tweets[i]
+					console.log("--------------------------");
+					console.log(tweets[i].created_at);
+					console.log(' ');
+					console.log(tweets[i].text);
+					console.log("--------------------------\n\n");
+				}
 			}
-		}
-	});
+		});
 
-}; //end of myTweets function
-
-
-
-// This will print everything in exports.
-// console.log("--------------------------");
-// console.log("--- twitterKeys ---");
-// console.log(twitterKeys);
-
-// console.log("You can choose: node liri.js my-tweets, spotify-this-song, movie-this, or do-what-it-says");
-
-// User provides two arguments.
-
-// The first argument will be the action (i.e. node liri.js my-tweets,
-// spotify-this-song, movie-this, or do-what-it-says".)
-// var action = process.argv[2];
-
-// The second will be the actual value to use.
-// var value = process.argv[3];
-
-// We will then create a switch-case statement (if-then would also work).
-// The switch-case will direct which function gets run.
-// switch (action) {
-//   case "my-tweets":
-//     myTweets();
-//     break;
-
-//   case "spotify-this-song":
-//     spotifyThisSong();
-//     break;
-
-//   case "movie-this":
-//     movieThis();
-//     break;
-
-//   case "do-what-it-says":
-//     doWhatItSays();
-//     break;
-// }
-
-
+}; // end of getMyTweets function
 
 // liri.js can take in: `spotify-this-song`
 // `node liri.js spotify-this-song '<song name here>'`
-// function spotifyThisSong() {
-// 	console.log("--------------------------");
-// 	console.log("--- This is the spotify-this-song function. ---");
-// 	console.log("--------------------------");
+var spotifyThisSong = function() {
+	console.log("\n--------------------------");
+	console.log("--- This is the spotify-this-song function. ---\n");
+	console.log("--------------------------");
 
 // * Spotify
    // https://www.npmjs.com/package/node-spotify-api
+ 
+spotify.search({ type: 'track', query: 'dancing in the moonlight' }, function(err, data) {
+    if ( err ) {
+        console.log('Error occurred: ' + err);
+        return;
+    }
+}
+);
 
-//    * This will show the following information about the song in your terminal/bash window
-     
-//      * Artist(s)
-     
-//      * The song's name
-     
-//      * A preview link of the song from Spotify
-     
-//      * The album that the song is from
+    console.log(data);
 
-//    * If no song is provided then your program
-// will default to "The Sign" by Ace of Base.
-   
-//    * You will utilize the [node-spotify-api]
-// (https://www.npmjs.com/package/node-spotify-api)
-// package in order to retrieve song information from the Spotify API.
-   
+}; // end of spotifyThisSong function
 
+// We will then create a switch-case statement (if-then would also work).
+// The switch-case will direct which function gets run.
+var pick = function(caseData, functionData) {	
+	switch (caseData) {
+	  case "my-tweets":
+	    getMyTweets();
+	    break;
 
+	  case "spotify-this-song":
+	    spotifyThisSong();
+	    break;
 
-//    * Like the Twitter API, the Spotify API requires
-// you sign up as a developer to generate the necessary credentials.
-// You can follow these steps in order to generate a **client id** and **client secret**:
+	  // case "movie-this":
+	  //   movieThis();
+	  //   break;
 
-//    * Step One: Visit <https://developer.spotify.com/my-applications/#!/>
-   
-//    * Step Two: Either login to your existing Spotify account or create a new one (a free account is fine) and log in.
+	  // case "do-what-it-says":
+	  //   doWhatItSays();
+	  //   break;
 
-//    * Step Three: Once logged in, navigate to <https://developer.spotify.com/my-applications/#!/applications/create> to register a new application to be used with the Spotify API. You can fill in whatever you'd like for these fields. When finished, click the "complete" button.
+	  default:
+	  console.log('LIRI does not know that.');
+	}
+}; // end of pick function
 
-//    * Step Four: On the next screen,
-		// scroll down to where you see your client id and client secret.
-		// Copy these values down somewhere,
-		// you'll need them to use the Spotify API and the [node-spotify-api package](https://www.npmjs.com/package/node-spotify-api). See the 
+var runThis = function(argOne, argTwo) {
+	pick(argOne, argTwo);
+};
 
+runThis(process.argv[2], process.argv[3]);
 
-// };
 
 
 // liri.js can take in: `movie-this`
@@ -169,15 +142,13 @@ client.get('statuses/user_timeline', params, function(error, tweets, response) {
 
 
 
-// +++++++++++++++++++++++++++++
-// // INSTRUCTIONS:
-// // ---------------------------------------------------------------------------------------------------------
+// +++
 // // Level 1:
 // // Take any movie with a word title (ex: Cinderella) as a Node argument and retrieve the year it was created
 
 // // Level 2 (More Challenging):
 // // Take a move with multiple words (ex: Forrest Gump) as a Node argument and retrieve the year it was created.
-// // ---------------------------------------------------------------------------------------------------------
+// // ----------------------
 
 // // Include the request npm package (Don't forget to run "npm install request" in this folder first!)
 // var request = require("request");
@@ -243,54 +214,3 @@ client.get('statuses/user_timeline', params, function(error, tweets, response) {
 //      * Feel free to change the text in that document
 // to test out the feature for other commands.
 // };
-
-
-
-
-
-// ### BONUS
-
-// * In addition to logging the data to your terminal/bash window,
-// output the data to a .txt file called `log.txt`.
-
-// * Make sure you append each command you run to the `log.txt` file. 
-
-// * Do not overwrite your file each time you run a command.
-
-
-// // Core node package for reading and writing files
-// var fs = require("fs");
-
-// // This block of code will create a file called "movies.txt".
-// // It will then print "Inception, Die Hard" in the file
-// fs.writeFile("movies.txt", "Inception, Die Hard, other movie", function(err) {
-
-//   // If the code experiences any errors it will log the error to the console.
-//   if (err) {
-//     return console.log(err);
-//   }
-
-//   // Otherwise, it will print: "movies.txt was updated!"
-//   console.log("movies.txt was updated!");
-
-// });
-
-
-
-
-
-// We then append the contents "Hello Kitty" into the file
-// If the file didn't exist then it gets created on the fly.
-// fs.appendFile(textFile, "Hello Kitty", function(err) {
-
-//   // If an error was experienced we say it.
-//   if (err) {
-//     console.log(err);
-//   }
-
-//   // If no error is experienced, we'll log the phrase "Content Added" to our node console.
-//   else {
-//     console.log("Content Added!");
-//   }
-
-// });

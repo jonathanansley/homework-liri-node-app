@@ -1,4 +1,4 @@
-console.log('from keys.js file');
+// console.log('from keys.js file');
 
 exports.twitterKeys = {
   consumer_key: 'jW4tlMVR9iWKmmB811RmNtOFV',
