@@ -1,9 +1,8 @@
-JavaScript
-console.log('this is loaded');
+console.log('from keys.js file');
 
 exports.twitterKeys = {
-  consumer_key: ISHmz7FB8uUHxpYSvkR3U4Ikv,
-  consumer_secret: QBZDm9CHr8zy5DAN2VItrlSr4OeM4Uf3laymspXDPg4yxI8z8r,
-  access_token_key: '<input here>',
-  access_token_secret: '<input here>',
-}
+  consumer_key: 'jW4tlMVR9iWKmmB811RmNtOFV',
+  consumer_secret: 'gYYJGSC5adLQR4JutdHJXudub399i0AvHJrv9rDS2T0xk5Io3t',
+  access_token_key: '885098533795319809-igZ6HUdJtNGjAsP40j9sXddE5OnZCUn',
+  access_token_secret: 'LpDxhI9sgHs23JXzYwFhyI61lal2eyjgcSngx73gcUoxn',
+};

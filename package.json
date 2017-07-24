@@ -16,25 +16,14 @@
     "Spotify",
     "OMDB"
   ],
-  "author": "Jonathan Ansley",
+  "author": "Twitter",
   "license": "ISC",
   "dependencies": {
     "inquirer": "^1.0.2",
-    "twit": "^2.2.5"
-  }
-  "bugs": {
-    "url": "https://github.com/jonathanansley/liri-node-app/issues"
+    "request": "^2.81.0",
+    "spotify": "^0.3.0",
+    "twit": "^2.2.5",
+    "twitter": "^1.7.1"
   },
   "homepage": "https://github.com/jonathanansley/liri-node-app#readme"
 }
-
-
-
-   * Spotify
-   https://www.npmjs.com/package/node-spotify-api
-   
-   * Request
-   https://www.npmjs.com/package/request
-     
-     * You'll use Request to grab data from the OMDB API
-     http://www.omdbapi.com
